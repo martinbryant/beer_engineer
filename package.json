@@ -16,6 +16,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "fetch-mock": "^6.4.4",
     "redux-devtools-extension": "^2.13.2",
     "redux-immutable-state-invariant": "^2.1.0"
   }
