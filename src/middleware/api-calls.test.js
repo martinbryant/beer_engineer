@@ -1,6 +1,6 @@
 import fetchMock from 'fetch-mock';
 
-import { apiMiddleware } from './api-middleware';
+import { apiCalls } from './api-calls';
 import * as con from '../actions/constants';
 
 describe('apiMiddleware tests', () => {
@@ -11,7 +11,7 @@ describe('apiMiddleware tests', () => {
         getState = () => ({
             searchByBeerName: 'pale'
         });
-        middleware = apiMiddleware({ dispatch, getState })(next);
+        middleware = apiCalls({ dispatch, getState })(next);
     })
     afterEach(() => {
         fetchMock.restore();
@@ -71,6 +71,12 @@ describe('apiMiddleware tests', () => {
             expect(nextArgs).toMatchObject(expected)
         })
     })
+})
+
+describe('apiMiddleware helper function tests', () => {
+    it('convertToJson')
+    it('isResponseOk')
+    it('hasResults')
 })
 
 const beerRes = [
