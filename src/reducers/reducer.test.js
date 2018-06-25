@@ -52,7 +52,7 @@ describe('Reducer tests', () => {
             ...initialState,
             beerList: [beer]
         }
-        const action = actions.favouriteBeer(192)
+        const action = actions.setBeerAsFavourite(192)
         const expected = {
             ...state,
             beerList: [{
@@ -72,7 +72,7 @@ describe('Reducer tests', () => {
             }],
             favouriteList: [192]
         }
-        const action = actions.favouriteBeer(192)
+        const action = actions.setBeerAsFavourite(192)
         const expected = {
             ...state,
             beerList: [{

@@ -23,12 +23,12 @@ describe('Action creator tests', () => {
         }
         expect(actions.getBeerListByNameFailure(error)).toEqual(expected)
     })
-    it('favouriteBeer', () => {
+    it('setBeerAsFavourite', () => {
         const id = '192'
         const expected = {
-            type: 'FAVOURITE_BEER',
+            type: 'SET_BEER_AS_FAVOURITE',
             id
         }
-        expect(actions.favouriteBeer(id)).toEqual(expected)
+        expect(actions.setBeerAsFavourite(id)).toEqual(expected)
     })
 })
