@@ -19,16 +19,12 @@ const styles = {
         alignItems: 'stretch',
         alignContent: 'stretch',
         gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))'
-    },
-    item: {
-
     }
 };
 
 const SearchResult = ({ classes, beerList, toggleFavourite }) => (
     <Grid container
-        className={classes.container}
-    >
+        className={classes.container}>
         {beerList.map(beer => (<Grid item key={beer.id}
             className={classes.item}>
             <BeerCard beer={beer} toggleFavourite={toggleFavourite} />
