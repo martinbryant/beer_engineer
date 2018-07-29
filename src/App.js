@@ -1,21 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+
+import NavBar from './components/navbar'
+import SearchPage from './components/search-page'
+import FavouritePage from './components/favourite-page';
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  }
+}
 
 class App extends Component {
   render() {
+    const { classes } = this.props
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className={classes.root}>
+          <Route path='/' render={({ location }) => (
+            <Fragment>
+              <NavBar location={location} />
+              <Switch>
+                <Redirect exact from='/' to="/search" />
+                <Route path='/search' component={SearchPage} />
+                <Route path="/favourites" component={FavouritePage} />
+              </Switch>
+            </Fragment>
+          )} />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(App);

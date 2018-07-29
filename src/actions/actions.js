@@ -5,8 +5,9 @@ import {
     SET_BEER_AS_FAVOURITE
 } from './constants';
 
-export const getBeerListByNameStarted = () => ({
-    type: GET_BEER_LIST_BY_NAME_STARTED
+export const getBeerListByNameStarted = searchTerm => ({
+    type: GET_BEER_LIST_BY_NAME_STARTED,
+    searchTerm
 })
 
 export const getBeerListByNameSuccess = beerList => ({

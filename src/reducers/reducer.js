@@ -11,7 +11,7 @@ const favouriteList = (state = [], action) => {
     switch (action.type) {
         case SET_BEER_AS_FAVOURITE:
             return state.includes(action.id)
-                ? state.filter(id => id != action.id)
+                ? state.filter(id => id !== action.id)
                 : [
                     ...state,
                     action.id
@@ -24,14 +24,19 @@ const favouriteList = (state = [], action) => {
 const beerList = (state = [], action) => {
     switch (action.type) {
         case GET_BEER_LIST_BY_NAME_SUCCESS:
-            return action.beerList
+            return action.beerList.map(beer => ({
+                ...beer,
+                isFavourite: false
+            }))
         case SET_BEER_AS_FAVOURITE:
             return state.map(beer => (beer.id === action.id)
                 ? {
                     ...beer,
-                    isFavourite: (beer.isFavourite ? false : true)
+                    isFavourite: !beer.isFavourite
                 }
                 : beer)
+        case GET_BEER_LIST_BY_NAME_FAILURE:
+            return []
         default:
             return state
     }
@@ -54,6 +59,9 @@ const loadingError = (state = '', action) => {
     switch (action.type) {
         case GET_BEER_LIST_BY_NAME_FAILURE:
             return action.error
+        case GET_BEER_LIST_BY_NAME_STARTED:
+        case GET_BEER_LIST_BY_NAME_SUCCESS:
+            return ''
         default:
             return state
 

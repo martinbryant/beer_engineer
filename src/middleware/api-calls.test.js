@@ -77,6 +77,8 @@ describe('apiMiddleware helper function tests', () => {
     it('convertToJson')
     it('isResponseOk')
     it('hasResults')
+    it('nextSuccess')
+    it('nextFailure')
 })
 
 const beerRes = [
