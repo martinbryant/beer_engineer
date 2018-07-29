@@ -11,7 +11,9 @@ import StarIcon from '@material-ui/icons/Star'
 
 const styles = {
     card: {
-        maxWidth: 200,
+        width: 200,
+        display: 'grid',
+        height: '100%'
     },
     icon: {
         marginLeft: 'auto'
@@ -19,17 +21,10 @@ const styles = {
     star: {
         color: 'gold'
     },
-    image: {
-        display: 'block',
-        height: '150px',
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        paddingTop: '10px',
-        position: 'relative',
-        width: 'auto'
-    },
     action: {
-        padding: '0px'
+        padding: '0px',
+        height: '48px',
+        alignSelf: 'end'
     }
 
 };
@@ -49,34 +44,38 @@ const imageStyle = {
 }
 
 function BeerCard({ classes, beer, toggleFavourite }) {
-    const { card, star, icon, action } = classes;
+    const { card, content, star, icon, action } = classes;
     const { image_url, name, id, tagline, isFavourite } = beer;
     return (
-        <div>
-            <Card className={card}>
-                <Image src={image_url}
-                    alt={name}
-                    style={clearImagePadding}
-                    imageStyle={imageStyle} />
-                <CardContent>
-                    <Typography gutterBottom align="center" variant="title" component="h2">
-                        {name}
-                    </Typography>
-                    <Typography component="p" align="center">
-                        {tagline}
-                    </Typography>
-                </CardContent>
-                <CardActions className={action}>
-                    <IconButton
-                        aria-label="Add to favorites"
-                        className={icon}
-                        value={id}
-                        onClick={toggleFavourite(id)}>
-                        <StarIcon className={(isFavourite) ? star : ''} />
-                    </IconButton>
-                </CardActions>
-            </Card>
-        </div>
+        <Card className={card}>
+            <Image src={image_url}
+                alt={name}
+                style={clearImagePadding}
+                imageStyle={imageStyle} />
+            <CardContent className={content}>
+                <Typography
+                    gutterBottom
+                    align="center"
+                    variant="title"
+                    component="h2">
+                    {name}
+                </Typography>
+                <Typography
+                    component="p"
+                    align="center">
+                    {tagline}
+                </Typography>
+            </CardContent>
+            <CardActions className={action}>
+                <IconButton
+                    aria-label="Add to favorites"
+                    className={icon}
+                    value={id}
+                    onClick={toggleFavourite(id)}>
+                    <StarIcon className={(isFavourite) ? star : ''} />
+                </IconButton>
+            </CardActions>
+        </Card>
     );
 }
 

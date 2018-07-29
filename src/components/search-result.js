@@ -8,17 +8,29 @@ import BeerCard from './beer-card'
 import { setBeerAsFavourite } from '../actions/actions';
 
 const styles = {
-    beerContainer: {
-        marginTop: '25px'
+    container: {
+        marginTop: '25px',
+        marginBottom: '50px',
+        paddingLeft: '50px',
+        paddingRight: '50px',
+        display: 'grid',
+        gridRowGap: '15px',
+        justifyItems: 'center',
+        alignItems: 'stretch',
+        alignContent: 'stretch',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))'
+    },
+    item: {
+
     }
 };
 
 const SearchResult = ({ classes, beerList, toggleFavourite }) => (
     <Grid container
-        className={classes.beerContainer}
-        justify="center"
-        spacing={24}>
-        {beerList.map(beer => (<Grid item key={beer.id}>
+        className={classes.container}
+    >
+        {beerList.map(beer => (<Grid item key={beer.id}
+            className={classes.item}>
             <BeerCard beer={beer} toggleFavourite={toggleFavourite} />
         </Grid>))}
     </Grid>
