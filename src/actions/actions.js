@@ -21,9 +21,9 @@ export const getBeerListByNameFailure = error => ({
     error
 })
 
-export const toggleFavourite = id => ({
+export const toggleFavourite = beer => ({
     type: TOGGLE_FAVOURITE,
-    id
+    beer
 })
 
 export const navigateToFavourites = () => ({

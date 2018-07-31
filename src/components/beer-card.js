@@ -71,7 +71,7 @@ function BeerCard({ classes, beer, isFavourite, toggleFavourite }) {
                     aria-label="Add to favorites"
                     className={icon}
                     value={id}
-                    onClick={toggleFavourite(id)}>
+                    onClick={toggleFavourite(beer)}>
                     <StarIcon className={(isFavourite) ? star : ''} />
                 </IconButton>
             </CardActions>

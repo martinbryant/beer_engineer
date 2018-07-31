@@ -1,4 +1,4 @@
-export const isBeerFavourite = state => beerId => state.favouriteList.includes(beerId)
+export const isBeerFavourite = state => beer => state.favouriteList.find(fav => fav.id === beer.id)
 
 export const getNeededBeerProperties = beerList => beerList.map(({ image_url, name, id, tagline }) => ({
     image_url,
@@ -6,3 +6,4 @@ export const getNeededBeerProperties = beerList => beerList.map(({ image_url, na
     id,
     tagline
 }))
+

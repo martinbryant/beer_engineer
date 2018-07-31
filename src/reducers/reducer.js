@@ -10,11 +10,11 @@ import {
 const favouriteList = (state = [], action) => {
     switch (action.type) {
         case TOGGLE_FAVOURITE:
-            return state.includes(action.id)
-                ? state.filter(id => id !== action.id)
+            return state.find(beer => beer.id === action.beer.id)
+                ? state.filter(beer => beer.id !== action.beer.id)
                 : [
                     ...state,
-                    action.id
+                    action.beer
                 ]
         default:
             return state

@@ -28,7 +28,7 @@ const SearchResult = ({ classes, beerList, isFavourite, toggleFavourite }) => (
         className={classes.container}>
         {beerList.map(beer => (<Grid item key={beer.id}
             className={classes.item}>
-            <BeerCard beer={beer} isFavourite={isFavourite(beer.id)} toggleFavourite={toggleFavourite} />
+            <BeerCard beer={beer} isFavourite={isFavourite(beer)} toggleFavourite={toggleFavourite} />
         </Grid>))}
     </Grid>
 )
@@ -43,8 +43,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    toggleFavourite(id) {
-        return () => dispatch(toggleFavourite(id))
+    toggleFavourite(beer) {
+        return () => dispatch(toggleFavourite(beer))
     }
 })
 
