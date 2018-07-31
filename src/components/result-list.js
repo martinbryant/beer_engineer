@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 
 import BeerCard from './beer-card'
-import { toggleFavourite } from '../actions/actions';
 
 const styles = {
     container: {
@@ -22,31 +20,18 @@ const styles = {
     }
 };
 
-const ResultDisplay = ({ classes, favouriteList, toggleFavourite }) => (
+const ResultList = ({ classes, resultList, isFavourite, toggleFavourite }) => (
     <Grid container
         className={classes.container}>
-        {favouriteList.map(beer => (<Grid item key={beer.id}
+        {resultList.map(beer => (<Grid item key={beer.id}
             className={classes.item}>
-            <BeerCard beer={beer} toggleFavourite={toggleFavourite} />
+            <BeerCard beer={beer} isFavourite={isFavourite(beer)} toggleFavourite={toggleFavourite} />
         </Grid>))}
     </Grid>
 )
 
-ResultDisplay.propTypes = {
+ResultList.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ favouriteList }) => ({
-    favouriteList
-})
-
-const mapDispatchToProps = dispatch => ({
-    toggleFavourite(id) {
-        return () => dispatch(toggleFavourite(id))
-    }
-})
-
-const styledComp = withStyles(styles)(ResultDisplay)
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(styledComp)
+export default withStyles(styles)(ResultList)

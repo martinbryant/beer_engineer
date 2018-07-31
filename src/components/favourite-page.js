@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 
-import ResultDisplay from './result-display';
+import FavouriteResult from './favourite-result';
 
 const FavouritePage = () => (
     <Fragment>
-        <ResultDisplay />
+        <FavouriteResult />
     </Fragment>
 )
 
