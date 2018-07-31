@@ -2,8 +2,7 @@ import {
     GET_BEER_LIST_BY_NAME_STARTED,
     GET_BEER_LIST_BY_NAME_SUCCESS,
     GET_BEER_LIST_BY_NAME_FAILURE,
-    TOGGLE_FAVOURITE,
-    NAVIGATE_TO_FAVOURITES
+    TOGGLE_FAVOURITE
 } from './constants';
 
 export const getBeerListByNameStarted = searchTerm => ({
@@ -24,10 +23,6 @@ export const getBeerListByNameFailure = error => ({
 export const toggleFavourite = beer => ({
     type: TOGGLE_FAVOURITE,
     beer
-})
-
-export const navigateToFavourites = () => ({
-    type: NAVIGATE_TO_FAVOURITES
 })
 
 
