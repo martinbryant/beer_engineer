@@ -1,7 +1,10 @@
 import * as actions from '../actions/actions';
-import { GET_BEER_LIST_BY_NAME_STARTED } from '../actions/constants'
+import {
+    GET_BEER_LIST_BY_NAME_STARTED,
+    NAVIGATE_TO_FAVOURITES
+} from '../actions/constants'
 
-export const apiCalls = state => next => action => {
+export const apiCalls = ({ getState }) => next => action => {
     const nextSuccess = res => next(actions.getBeerListByNameSuccess(res));
     const nextFailure = err => next(actions.getBeerListByNameFailure(err.message));
     next(action);
@@ -13,6 +16,9 @@ export const apiCalls = state => next => action => {
             .then(nextSuccess)
             .catch(nextFailure)
     }
+    // if (action.type === NAVIGATE_TO_FAVOURITES) {
+    //     //each item thats an int in the list then fetch by ID
+    // }
 }
 
 const searchByNameUrl = name => `https://api.punkapi.com/v2/beers?beer_name=${name}`

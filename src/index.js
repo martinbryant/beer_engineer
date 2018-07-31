@@ -6,7 +6,10 @@ import './index.css';
 import App from './App';
 import configureStore from './store/configureStore'
 
-const initialState = {}
+
+const initialState = {
+    favouriteList: JSON.parse(localStorage.getItem('favouriteBeers')) || []
+}
 
 const store = configureStore(initialState);
 

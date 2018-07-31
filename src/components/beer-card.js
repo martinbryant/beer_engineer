@@ -43,9 +43,9 @@ const imageStyle = {
     width: 'auto'
 }
 
-function BeerCard({ classes, beer, toggleFavourite }) {
+function BeerCard({ classes, beer, isFavourite, toggleFavourite }) {
     const { card, content, star, icon, action } = classes;
-    const { image_url, name, id, tagline, isFavourite } = beer;
+    const { image_url, name, id, tagline } = beer;
     return (
         <Card className={card}>
             <Image src={image_url}

@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid'
 
 import BeerCard from './beer-card'
 import { toggleFavourite } from '../actions/actions';
-import { isBeerFavourite, getNeededBeerProperties } from '../selectors/selectors';
 
 const styles = {
     container: {
@@ -23,23 +22,22 @@ const styles = {
     }
 };
 
-const SearchResult = ({ classes, beerList, isFavourite, toggleFavourite }) => (
+const ResultDisplay = ({ classes, favouriteList, toggleFavourite }) => (
     <Grid container
         className={classes.container}>
-        {beerList.map(beer => (<Grid item key={beer.id}
+        {favouriteList.map(beer => (<Grid item key={beer.id}
             className={classes.item}>
-            <BeerCard beer={beer} isFavourite={isFavourite(beer.id)} toggleFavourite={toggleFavourite} />
+            <BeerCard beer={beer} toggleFavourite={toggleFavourite} />
         </Grid>))}
     </Grid>
 )
 
-SearchResult.propTypes = {
+ResultDisplay.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
-    beerList: getNeededBeerProperties(state.beerList),
-    isFavourite: isBeerFavourite(state)
+const mapStateToProps = ({ favouriteList }) => ({
+    favouriteList
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -48,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-const styledComp = withStyles(styles)(SearchResult)
+const styledComp = withStyles(styles)(ResultDisplay)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(styledComp)
