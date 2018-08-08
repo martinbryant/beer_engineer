@@ -13,7 +13,7 @@ This might seem like a giant leap at first, but focus on building this web app p
 * Add favourite functionality which allows you to favourite a card
 * Create a separate route (using react router) which allows you to see all the beers you’ve favourited in the session.
 
-[Beer Engineer](http://martinbryant.io/beer-engineer/ "Beer Engineer") 
+[Beer Engineer using React/Redux/Material UI](http://martinbryant.io/beer-engineer/ "Beer Engineer") 
 
 ## Challenges
 * Using and customising React Material UI for the layout
