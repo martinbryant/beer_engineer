@@ -1,27 +1,30 @@
-# Giphy Searcher in React/Redux
+# Beer Engineer
 
 Inspired by [5 Projects To Complete When Starting to Learn Front-End Web Development](https://medium.com/@GarrettLevine/5-projects-to-complete-when-starting-to-learn-front-end-web-development-48e8a1ce3178 "medium.com")
 
-An excellent beginning application to build is a basic re-creation of the the giphy website, using the giphy api itself. I recommend their API for beginners because there is no need to request any kind of API key, and you won’t have to worry about much configuration when trying to request data.
+I would recommend creating a similar app to giphy in layout, but one which allows you to have a ‘shopping cart’ or ‘favourite’ functionality. You should then be able to see a separate list of the items you favourited. This will of course not be saved to any database, but will bring a new set of challenges with managing application state.
 
-Using their API you are able to build a small web app which does the following;
+I would recommend diving into a front-end framework to expand your ability and general understanding over modern web development. Because I work heavily with Facebook’s React I would recommend starting that, and using react create app to get started.
 
-* Displays trending gifs on app load shown in a column/grid
-* Has an input which allows you to search for specific gifs
-* At the bottom of the results, there is a ‘load more’ button, which gets more gifs using that search term.
+This might seem like a giant leap at first, but focus on building this web app piece by piece. Create the app in the following order;
 
-[Giphy Searcher in React/Redux](http://martinbryant.io/giphy-searcher-react/ "Giphy Searcher") 
+* Template data on the page from a generic API request
+* Add a search bar, which makes a separate query to a database on request
+* Add favourite functionality which allows you to favourite a card
+* Create a separate route (using react router) which allows you to see all the beers you’ve favourited in the session.
+
+[Beer Engineer](http://martinbryant.io/beer-engineer/ "Beer Engineer") 
 
 ## Challenges
-* Attempting TDD for the first time to complete this version
-* Using Redux Middleware to validation the search term and make API calls
-* I broke my wrist on 26 March 2018 and had surgery 2 weeks later
+* Using and customising React Material UI for the layout
+* Incorporating React Router and Material UI tabs for page navigation
+* Design decisions on storing data to be retreived from local storage
 
 ## Takeaways
 
-* I feel more confident in using TDD going forward
-* Using TDD helped when it came to debugging the application
-* I have a much better understanding of using Redux middleware
+* I have learnt an alternative way to apply styles to components
+* I feel confident to use React Router in the future
+* Spent some time researching Redux messaging patterns for project scaling
 
 ## Acknowledgments
 [Garrett Levine](https://medium.com/@GarrettLevine "Garrett Levine on Medium") - Thank you for the great article
