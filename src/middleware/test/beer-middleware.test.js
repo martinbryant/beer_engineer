@@ -42,6 +42,21 @@ describe('beerMiddleware', () => {
         expect(next).toHaveBeenCalledWith(apiRequestAction)
 
     })
+    it('fetch beers by name action url replaces spaces with underscores', () => {
+        const action = fetchBeerByName('punk beer')
+        const apiRequestAction = {
+            type: 'BEERS_BY_NAME_API_REQUEST',
+            payload: {},
+            meta: {
+                method: 'GET',
+                url: `${'https://api.punkapi.com/v2/beers/1?beer_name='}${'punk_beer'}`,
+                feature: BEERS_BY_NAME
+            }
+        }
+        middleware(action)
+        expect(next).toHaveBeenCalledWith(apiRequestAction)
+
+    })
     it('fetch beers by name action calls set loader', () => {
         const action = fetchBeerByName('beer')
         const setLoaderAction = {

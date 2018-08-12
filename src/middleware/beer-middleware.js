@@ -12,7 +12,7 @@ export const beerMiddleware = ({ getState }) => next => action => {
     if (type.includes('FETCH')) {
         let url
         if (type.includes(BEERS_BY_NAME)) {
-            url = `${byNameUrl}${payload}`
+            url = `${byNameUrl}${payload.replace(" ", "_")}`
         }
         if (type.includes(BEER_RANDOM)) {
             url = randomUrl
