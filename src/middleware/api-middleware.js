@@ -6,13 +6,15 @@ export const apiMiddleware = ({ dispatch }) => next => action => {
         const { url, method, feature } = action.meta
         const successResponse = res => dispatch(apiSuccess(res, feature))
         const errorResponse = err => dispatch(apiError(err, feature))
-        return fetch(url, method)
+        return fetch(url, { method })
             .then(isResponseOk)
             .then(convertToJson)
             .then(successResponse)
             .catch(errorResponse)
     }
 }
+
+export default apiMiddleware
 
 const convertToJson = res => res.json()
 const isResponseOk = res => res.ok ? Promise.resolve(res) : Promise.reject(Error('Network Response Error'))

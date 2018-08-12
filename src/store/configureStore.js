@@ -1,16 +1,23 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { apiCalls } from '../middleware/api-calls';
-import { localStorageMid } from '../middleware/local-storage';
+import apiMiddleware from '../middleware/api-middleware'
+import beerMiddleware from '../middleware/beer-middleware'
+import normalizeMiddleware from '../middleware/normalize-middleware'
+import beers from '../reducers/beer-reducer'
+import ui from '../reducers/ui-reducer'
 
-import reducer from '../reducers/reducer';
+const reducer = combineReducers({
+    beers,
+    ui
+})
 
 const middleware = composeWithDevTools(applyMiddleware(
     reduxImmutableStateInvariant(),
-    apiCalls,
-    localStorageMid
+    beerMiddleware,
+    apiMiddleware,
+    normalizeMiddleware
 ))
 
 export default function configureStore(initialState) {

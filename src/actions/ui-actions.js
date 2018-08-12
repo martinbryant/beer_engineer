@@ -1,9 +1,9 @@
-export const SETLOADER = '_SET_LOADER'
+export const SET_LOADER = '_SET_LOADER'
 const SET_NOTIFICATION = '_SET_NOTIFICATION'
 const REMOVE_NOTIFICATION = '_REMOVE_NOTIFICATION'
 
 export const setLoader = (isLoading, feature) => ({
-    type: `${feature}${SETLOADER}`,
+    type: `${feature}${SET_LOADER}`,
     payload: isLoading,
     meta: {
         feature

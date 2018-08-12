@@ -8,8 +8,10 @@ describe('beerMiddleware', () => {
     beforeEach(() => {
         next = jest.fn()
         getState = () => ({
-            searchedBeers: mockSearchedBeers,
-            favouriteBeers: mockFavouriteBeers
+            beers: {
+                searchedBeers: mockSearchedBeers,
+                favouriteBeers: mockFavouriteBeers
+            }
         })
         middleware = beerMiddleware({ getState })(next)
     })
@@ -34,7 +36,7 @@ describe('beerMiddleware', () => {
             payload: {},
             meta: {
                 method: 'GET',
-                url: `${'https://api.punkapi.com/v2/beers/1?beer_name='}${'beer'}`,
+                url: `${'https://api.punkapi.com/v2/beers?beer_name='}${'beer'}`,
                 feature: BEERS_BY_NAME
             }
         }
@@ -49,7 +51,7 @@ describe('beerMiddleware', () => {
             payload: {},
             meta: {
                 method: 'GET',
-                url: `${'https://api.punkapi.com/v2/beers/1?beer_name='}${'punk_beer'}`,
+                url: `${'https://api.punkapi.com/v2/beers?beer_name='}${'punk_beer'}`,
                 feature: BEERS_BY_NAME
             }
         }

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
-import { getBeerListByNameStarted } from '../actions/actions'
+import { fetchBeerByName } from '../actions/beer-actions';
 
 const styles = {
     textfield: {
@@ -37,16 +37,16 @@ SearchBar.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ loadingError }) => ({
-    loadingError
-})
+// const mapStateToProps = ({ loadingError }) => ({
+//     loadingError
+// })
 
 const mapDispatchToProps = dispatch => ({
     submitSearch(searchTerm) {
-        dispatch(getBeerListByNameStarted(searchTerm))
+        dispatch(fetchBeerByName(searchTerm))
     }
 })
 
 const styledComp = withStyles(styles)(SearchBar);
 
-export default connect(mapStateToProps, mapDispatchToProps)(styledComp)
+export default connect(null, mapDispatchToProps)(styledComp)

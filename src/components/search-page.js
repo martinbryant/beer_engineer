@@ -5,16 +5,15 @@ import SearchBar from './search-bar';
 import SearchResult from './search-result';
 import Loading from './loading';
 
-const SearchPage = ({ loadingStatus }) => (
+const SearchPage = ({ isLoading }) => (
     <Fragment>
         <SearchBar />
-        {loadingStatus === 'success' && <SearchResult />}
-        {loadingStatus === 'loading' && <Loading />}
+        {isLoading ? <Loading /> : <SearchResult />}
     </Fragment>
 )
 
-const mapStateToProps = ({ loadingStatus }) => ({
-    loadingStatus
+const mapStateToProps = ({ ui: { isLoading } }) => ({
+    isLoading
 })
 
 export default connect(mapStateToProps)(SearchPage)

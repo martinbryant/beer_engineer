@@ -28,7 +28,8 @@ describe('Beer actions', () => {
             type: 'FEATURE_SET_BEERS',
             payload: [],
             meta: {
-                feature: 'FEATURE'
+                feature: 'FEATURE',
+                normalizeKey: 'id'
             }
         }
         const beers = []
@@ -39,7 +40,7 @@ describe('Beer actions', () => {
     it('toggleFavourite', () => {
         const expected = {
             type: 'TOGGLE_FAVOURITE',
-            payload: 123
+            payload: '123'
         }
         const id = 123
         const action = actions.toggleFavourite(id)

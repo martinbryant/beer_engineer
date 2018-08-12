@@ -9,6 +9,5 @@ const component = () => shallow(<App />);
 
 describe('App tests', () => {
   it('renders an outer div with the class "root"', () => {
-    expect(component().prop(classes)).toMatchObject(true);
   });
 })

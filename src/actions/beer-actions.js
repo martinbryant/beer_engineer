@@ -27,13 +27,14 @@ export const setBeers = (beers, feature) => ({
     type: `${feature}${SET_BEERS}`,
     payload: beers,
     meta: {
-        feature
+        feature,
+        normalizeKey: 'id'
     }
 })
 
 export const toggleFavourite = id => ({
     type: TOGGLE_FAVOURITE,
-    payload: id
+    payload: id.toString()
 })
 
 export const addFavourite = beer => ({

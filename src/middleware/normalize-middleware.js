@@ -1,8 +1,8 @@
 import { dataNormalized } from '../actions/data-actions'
 
 export const normalizeMiddleware = ({ dispatch }) => next => action => {
-    const { normalizeKey, feature } = action.meta;
-    if (action.type.includes('_SET') && normalizeKey) {
+    if (action.type.includes('_SET') && action.meta.normalizeKey) {
+        const { feature, normalizeKey } = action.meta
         dispatch(dataNormalized(feature))
         const newPayload = action.payload.reduce((acc, item) => {
             acc[item[normalizeKey]] = item;
@@ -22,3 +22,5 @@ export const normalizeMiddleware = ({ dispatch }) => next => action => {
         next(action)
     }
 }
+
+export default normalizeMiddleware

@@ -4,9 +4,8 @@ import { setLoader, setNotification } from '../actions/ui-actions';
 
 export const beerMiddleware = ({ getState }) => next => action => {
     next(action)
-    const byNameUrl = 'https://api.punkapi.com/v2/beers/1?beer_name='
+    const byNameUrl = 'https://api.punkapi.com/v2/beers?beer_name='
     const randomUrl = 'https://api.punkapi.com/v2/beers/random'
-    let url
     const { feature } = action.meta || ''
     const { payload, type } = action;
     if (type.includes('FETCH')) {
@@ -29,11 +28,14 @@ export const beerMiddleware = ({ getState }) => next => action => {
         next(setLoader(false, feature))
     }
     if (type.includes(TOGGLE_FAVOURITE)) {
-        Object.keys((getState().favouriteBeers)).includes(payload)
+        Object.keys(getState().beers.favouriteBeers)
+            .includes(payload)
             ? next(deleteFavourite(payload))
             : next(addFavourite({
-                [payload]: getState().searchedBeers[payload]
+                [payload]: getState().beers.searchedBeers[payload]
             }))
     }
 }
+
+export default beerMiddleware
 

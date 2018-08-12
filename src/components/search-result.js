@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 
 import ResultList from './result-list'
-import { toggleFavourite } from '../actions/actions';
-import { isBeerFavourite, getNeededBeerProperties } from '../selectors/selectors';
+import { toggleFavourite } from '../actions/beer-actions';
+import { isBeerFavourite, getSearchedBeers } from '../selectors/selectors';
 
 const mapStateToProps = (state) => ({
-    resultList: getNeededBeerProperties(state.beerList),
+    resultList: getSearchedBeers(state),
     isFavourite: isBeerFavourite(state)
 })
 

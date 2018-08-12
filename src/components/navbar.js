@@ -12,6 +12,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import StarIcon from '@material-ui/icons/Star';
 import Badge from '@material-ui/core/Badge'
 
+import { getNoOfFavourites } from '../selectors/selectors'
+
 
 const styles = {
     flex: {
@@ -59,8 +61,8 @@ NavBar.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ favouriteList }) => ({
-    noOfFavourites: favouriteList.length
+const mapStateToProps = (state) => ({
+    noOfFavourites: getNoOfFavourites(state)
 })
 
 const styledComp = withStyles(styles)(NavBar)
