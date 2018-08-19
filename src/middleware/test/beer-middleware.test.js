@@ -2,6 +2,7 @@ import { beerMiddleware } from '../beer-middleware'
 import { BEERS_BY_NAME, BEER_RANDOM, setBeers, fetchBeerByName, fetchBeerRandom, toggleFavourite, addFavourite, deleteFavourite } from '../../actions/beer-actions';
 import { apiSuccess, apiError } from '../../actions/api-actions';
 import { setLoader, setNotification } from '../../actions/ui-actions';
+import { saveToLocalStorage } from '../../actions/data-actions';
 
 describe('beerMiddleware', () => {
     let next, getState, middleware
@@ -134,6 +135,13 @@ describe('beerMiddleware', () => {
         const deleteFavouriteAction = deleteFavourite(includedBeer)
         middleware(action)
         expect(next).toHaveBeenCalledWith(deleteFavouriteAction)
+    })
+    it('toggle favourite action calls save to local storage', () => {
+        const includedBeer = '5'
+        const action = toggleFavourite(includedBeer)
+        const expected = saveToLocalStorage('favouriteBeers')
+        middleware(action)
+        expect(next).toHaveBeenCalledWith(expected)
     })
 })
 

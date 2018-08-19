@@ -7,6 +7,7 @@ import beerMiddleware from '../middleware/beer-middleware'
 import normalizeMiddleware from '../middleware/normalize-middleware'
 import beers from '../reducers/beer-reducer'
 import ui from '../reducers/ui-reducer'
+import { localStorageMiddleware } from '../middleware/local-storage-middleware';
 
 const reducer = combineReducers({
     beers,
@@ -17,7 +18,8 @@ const middleware = composeWithDevTools(applyMiddleware(
     reduxImmutableStateInvariant(),
     beerMiddleware,
     apiMiddleware,
-    normalizeMiddleware
+    normalizeMiddleware,
+    localStorageMiddleware
 ))
 
 export default function configureStore(initialState) {

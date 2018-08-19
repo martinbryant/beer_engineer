@@ -7,11 +7,13 @@ import App from './App';
 import configureStore from './store/configureStore'
 
 
-// const initialState = {
-//     favouriteList: JSON.parse(localStorage.getItem('favouriteBeers')) || []
-// }
+const initialState = {
+    beers: {
+        favouriteBeers: JSON.parse(localStorage.getItem('favouriteBeers')) || []
+    }
+}
 
-const store = configureStore({});
+const store = configureStore(initialState);
 
 const root = document.getElementById('root')
 

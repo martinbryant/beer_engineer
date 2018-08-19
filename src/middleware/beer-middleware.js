@@ -1,6 +1,7 @@
 import { BEERS_BY_NAME, BEER_RANDOM, setBeers, TOGGLE_FAVOURITE, deleteFavourite, addFavourite } from '../actions/beer-actions'
 import { apiRequest, API_ERROR, API_SUCCESS } from '../actions/api-actions';
 import { setLoader, setNotification } from '../actions/ui-actions';
+import { saveToLocalStorage } from '../actions/data-actions';
 
 export const beerMiddleware = ({ getState }) => next => action => {
     next(action)
@@ -34,6 +35,7 @@ export const beerMiddleware = ({ getState }) => next => action => {
             : next(addFavourite({
                 [payload]: getState().beers.searchedBeers[payload]
             }))
+        next(saveToLocalStorage('favouriteBeers'))
     }
 }
 
