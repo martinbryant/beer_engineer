@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import NavBar from './components/navbar'
 import SearchPage from './components/search-page'
 import FavouritePage from './components/favourite-page';
+import NotificationBar from './components/notifications-bar'
 
 
 const styles = {
@@ -33,6 +34,7 @@ class App extends Component {
                 <Route path='/search' component={SearchPage} />
                 <Route path="/favourites" component={FavouritePage} />
               </Switch>
+              <NotificationBar />
             </Fragment>
           )} />
         </div>

@@ -9,6 +9,10 @@ export const getNeededBeerProperties = beerList => beerList.map(({ image_url, na
 
 export const getNoOfFavourites = state => Object.keys(state.beers.favouriteBeers).length
 
+// write selector tests
+// refactor to getFavorSearchedBeers
+
+
 export const getSearchedBeers = state => {
     const { beers: { searchedBeers } } = state
     return Object.keys(searchedBeers)
@@ -39,5 +43,10 @@ export const getFavouriteBeers = state => {
             }
             ]
         }, []) || []
+}
+
+export const hasNotification = state => {
+    const { notifications } = state.ui
+    return (Object.keys(notifications).length !== 0 && notifications.constructor === Object)
 }
 
