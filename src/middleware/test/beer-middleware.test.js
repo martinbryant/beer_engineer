@@ -112,7 +112,7 @@ describe('beerMiddleware', () => {
     })
     it('api error action calls set notification', () => {
         const action = apiError(Error('loading error'), 'FEATURE')
-        const setNotificationAction = setNotification(Error('loading error'), 'FEATURE')
+        const setNotificationAction = setNotification('loading error', 'FEATURE')
         middleware(action)
         expect(next).toHaveBeenCalledWith(setNotificationAction)
     })

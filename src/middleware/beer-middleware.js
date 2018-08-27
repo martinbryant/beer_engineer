@@ -25,7 +25,7 @@ export const beerMiddleware = ({ getState }) => next => action => {
         next(setLoader(false, feature))
     }
     if (type.includes(API_ERROR)) {
-        next(setNotification(payload, feature))
+        next(setNotification(payload.message, feature))
         next(setLoader(false, feature))
     }
     if (type.includes(TOGGLE_FAVOURITE)) {
