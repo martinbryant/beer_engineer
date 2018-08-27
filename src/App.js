@@ -24,15 +24,15 @@ class App extends Component {
   render() {
     const { classes } = this.props
     return (
-      <Router>
+      <Router basename='/beer-engineer'>
         <div className={classes.root}>
           <Route path='/' render={({ location }) => (
             <Fragment>
               <NavBar location={location} />
               <Switch>
-                <Redirect exact from='/' to="/search" />
+                <Redirect exact from='/' to='/search' />
                 <Route path='/search' component={SearchPage} />
-                <Route path="/favourites" component={FavouritePage} />
+                <Route path='/favourites' component={FavouritePage} />
               </Switch>
               <NotificationBar />
             </Fragment>
