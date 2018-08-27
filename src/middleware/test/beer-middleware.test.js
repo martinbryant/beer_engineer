@@ -122,19 +122,23 @@ describe('beerMiddleware', () => {
         middleware(action)
         expect(next).toHaveBeenCalledWith(setLoaderAction)
     })
-    it('toggle favourite action calls add favourite if it does not exist', () => {
+    it('toggle favourite action calls add favourite/set Notification if it does not exist', () => {
         const notIncludedBeer = '1'
         const action = toggleFavourite(notIncludedBeer)
         const addFavouriteAction = addFavourite(mockSearchedBeers)
+        const setNotificationAction = setNotification('Favourite saved', 'FAVOURITE')
         middleware(action)
         expect(next).toHaveBeenCalledWith(addFavouriteAction)
+        expect(next).toHaveBeenCalledWith(setNotificationAction)
     })
-    it('toggle favourite action calls delete favourite if it exists', () => {
+    it('toggle favourite action calls delete favourite/set Notification if it exists', () => {
         const includedBeer = '5'
         const action = toggleFavourite(includedBeer)
         const deleteFavouriteAction = deleteFavourite(includedBeer)
+        const setNotificationAction = setNotification('Favourite removed', 'FAVOURITE')
         middleware(action)
         expect(next).toHaveBeenCalledWith(deleteFavouriteAction)
+        expect(next).toHaveBeenCalledWith(setNotificationAction)
     })
     it('toggle favourite action calls save to local storage', () => {
         const includedBeer = '5'

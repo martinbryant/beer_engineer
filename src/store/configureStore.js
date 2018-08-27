@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import apiMiddleware from '../middleware/api-middleware'
 import beerMiddleware from '../middleware/beer-middleware'
 import normalizeMiddleware from '../middleware/normalize-middleware'
+import notificationMiddleware from '../middleware/notification-middleware'
 import beers from '../reducers/beer-reducer'
 import ui from '../reducers/ui-reducer'
 import { localStorageMiddleware } from '../middleware/local-storage-middleware';
@@ -18,6 +19,7 @@ const middleware = composeWithDevTools(applyMiddleware(
     reduxImmutableStateInvariant(),
     beerMiddleware,
     apiMiddleware,
+    notificationMiddleware,
     normalizeMiddleware,
     localStorageMiddleware
 ))

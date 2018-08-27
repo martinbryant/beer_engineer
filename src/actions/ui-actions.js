@@ -1,6 +1,6 @@
 export const SET_LOADER = '_SET_LOADER'
-const SET_NOTIFICATION = '_SET_NOTIFICATION'
-const REMOVE_NOTIFICATION = '_REMOVE_NOTIFICATION'
+export const SET_NOTIFICATION = '_SET_NOTIFICATION'
+export const REMOVE_NOTIFICATION = '_REMOVE_NOTIFICATION'
 
 export const setLoader = (isLoading, feature) => ({
     type: `${feature}${SET_LOADER}`,

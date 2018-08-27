@@ -29,12 +29,17 @@ export const beerMiddleware = ({ getState }) => next => action => {
         next(setLoader(false, feature))
     }
     if (type.includes(TOGGLE_FAVOURITE)) {
-        Object.keys(getState().beers.favouriteBeers)
-            .includes(payload)
-            ? next(deleteFavourite(payload))
-            : next(addFavourite({
+        if (Object.keys(getState().beers.favouriteBeers)
+            .includes(payload)) {
+            next(deleteFavourite(payload))
+            next(setNotification('Favourite removed', 'FAVOURITE'))
+        }
+        else {
+            next(addFavourite({
                 [payload]: getState().beers.searchedBeers[payload]
             }))
+            next(setNotification('Favourite saved', 'FAVOURITE'))
+        }
         next(saveToLocalStorage('favouriteBeers'))
     }
 }
