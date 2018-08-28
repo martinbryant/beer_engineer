@@ -143,7 +143,7 @@ describe('beerMiddleware', () => {
     it('toggle favourite action calls save to local storage', () => {
         const includedBeer = '5'
         const action = toggleFavourite(includedBeer)
-        const expected = saveToLocalStorage('favouriteBeers')
+        const expected = saveToLocalStorage('favouriteBeers', 'FAVOURITE')
         middleware(action)
         expect(next).toHaveBeenCalledWith(expected)
     })

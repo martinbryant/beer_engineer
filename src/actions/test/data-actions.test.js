@@ -14,37 +14,43 @@ describe('data actions', () => {
     })
     it('saveToLocalStorage', () => {
         const expected = {
-            type: 'SAVE_TO_LOCAL_STORAGE',
+            type: 'FEATURE_SAVE_TO_LOCAL_STORAGE',
             meta: {
-                key: 'key'
+                key: 'key',
+                feature: 'FEATURE'
             }
         }
         const key = 'key'
-        const action = actions.saveToLocalStorage(key)
+        const feature = 'FEATURE'
+        const action = actions.saveToLocalStorage(key, feature)
         expect(action).toEqual(expected)
     })
     it('saveToLocalStorageError', () => {
         const expected = {
-            type: 'key_SAVE_TO_LOCAL_STORAGE_ERROR',
+            type: 'FEATURE_SAVE_TO_LOCAL_STORAGE_ERROR',
             payload: Error('Failed to save'),
             meta: {
-                key: 'key'
+                key: 'key',
+                feature: 'FEATURE'
             }
         }
         const key = 'key'
+        const feature = 'FEATURE'
         const payload = Error('Failed to save')
-        const action = actions.saveToLocalStorageError(payload, key)
+        const action = actions.saveToLocalStorageError(payload, key, feature)
         expect(action).toEqual(expected)
     })
     it('saveToLocalStorageSuccess', () => {
         const expected = {
-            type: 'key_SAVE_TO_LOCAL_STORAGE_SUCCESS',
+            type: 'FEATURE_SAVE_TO_LOCAL_STORAGE_SUCCESS',
             meta: {
-                key: 'key'
+                key: 'key',
+                feature: 'FEATURE'
             }
         }
         const key = 'key'
-        const action = actions.saveToLocalStorageSuccess(key)
+        const feature = 'FEATURE'
+        const action = actions.saveToLocalStorageSuccess(key, feature)
         expect(action).toEqual(expected)
     })
 })

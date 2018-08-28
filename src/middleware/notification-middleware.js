@@ -1,4 +1,4 @@
-import { SET_NOTIFICATION, setNotification, removeNotification } from '../actions/ui-actions'
+import { SET_NOTIFICATION, setNotification } from '../actions/ui-actions'
 
 const notificationMiddleware = state => next => action => {
     if (action.type.includes(SET_NOTIFICATION)) {

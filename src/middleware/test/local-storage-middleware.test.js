@@ -28,14 +28,14 @@ describe('local storage middleware', () => {
         expect(next).toHaveBeenCalled()
     })
     it('handles save to local storage actions and call next with success action', () => {
-        const action = saveToLocalStorage('favourite')
-        const expected = saveToLocalStorageSuccess('favourite')
+        const action = saveToLocalStorage('favourite', 'FAVOURITE')
+        const expected = saveToLocalStorageSuccess('favourite', 'FAVOURITE')
         middleware(action)
         expect(next).toHaveBeenCalledWith(expected)
     })
     it('handles save to local storage actions and call next with failure action', () => {
-        const action = saveToLocalStorage()
-        const expected = saveToLocalStorageError(Error('No key'), undefined)
+        const action = saveToLocalStorage(undefined, 'FEATURE')
+        const expected = saveToLocalStorageError(Error('No key'), undefined, 'FEATURE')
         middleware(action)
         expect(next).toHaveBeenCalledWith(expected)
     })

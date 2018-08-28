@@ -21,6 +21,7 @@ export const beerMiddleware = ({ getState }) => next => action => {
         next(setLoader(true, feature))
     }
     if (type.includes(API_SUCCESS)) {
+        payload.length === 0 && next(setNotification('No results for this search'), feature)
         next(setBeers(payload, feature))
         next(setLoader(false, feature))
     }
@@ -40,7 +41,7 @@ export const beerMiddleware = ({ getState }) => next => action => {
             }))
             next(setNotification('Favourite saved', 'FAVOURITE'))
         }
-        next(saveToLocalStorage('favouriteBeers'))
+        next(saveToLocalStorage('favouriteBeers', 'FAVOURITE'))
     }
 }
 
