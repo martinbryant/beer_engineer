@@ -12,12 +12,11 @@ export const getNoOfFavourites = state => Object.keys(state.beers.favouriteBeers
 // write selector tests
 // refactor to getFavorSearchedBeers
 
-
-export const getSearchedBeers = state => {
-    const { beers: { searchedBeers } } = state
-    return Object.keys(searchedBeers)
+const getBeers = field => state => {
+    const requiredBeers = state.beers[field]
+    return Object.keys(requiredBeers)
         .reduce((beers = [], beerId) => {
-            const { id, name, tagline, image_url } = searchedBeers[beerId]
+            const { id, name, tagline, image_url } = requiredBeers[beerId]
             return [...beers,
             {
                 id,
@@ -29,21 +28,9 @@ export const getSearchedBeers = state => {
         }, []) || []
 }
 
-export const getFavouriteBeers = state => {
-    const { beers: { favouriteBeers } } = state
-    return Object.keys(favouriteBeers)
-        .reduce((beers = [], beerId) => {
-            const { id, name, tagline, image_url } = favouriteBeers[beerId]
-            return [...beers,
-            {
-                id,
-                name,
-                tagline,
-                image_url
-            }
-            ]
-        }, []) || []
-}
+export const getFavouriteBeers = getBeers('favouriteBeers')
+
+export const getSearchedBeers = getBeers('searchedBeers')
 
 export const hasNotification = state => {
     const { notifications } = state.ui
