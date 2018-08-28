@@ -5,15 +5,11 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store/configureStore'
+import { loadFromLocalStorage } from './actions/data-actions';
 
+const store = configureStore();
 
-const initialState = {
-    beers: {
-        favouriteBeers: JSON.parse(localStorage.getItem('favouriteBeers')) || []
-    }
-}
-
-const store = configureStore(initialState);
+store.dispatch(loadFromLocalStorage('favouriteBeers', 'INIT'))
 
 const root = document.getElementById('root')
 

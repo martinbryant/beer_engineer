@@ -1,5 +1,6 @@
 import * as reducer from '../beer-reducer'
 import { setBeers, addFavourite, deleteFavourite } from '../../actions/beer-actions'
+import { loadFromLocalStorageSuccess } from '../../actions/data-actions';
 
 describe('beer reducer', () => {
     describe('searchedBeers', () => {
@@ -66,6 +67,13 @@ describe('beer reducer', () => {
             const id = '1';
             const action = deleteFavourite(id)
             const oldState = mockNormalizedResponse
+            const callReducer = reducer.favouriteBeers(oldState, action)
+            expect(callReducer).toEqual(expected)
+        })
+        it('should handle loadFromLocalStorageSuccess', () => {
+            const expected = mockNormalizedResponse
+            const action = loadFromLocalStorageSuccess(mockNormalizedResponse, 'favorite', 'INIT')
+            const oldState = {}
             const callReducer = reducer.favouriteBeers(oldState, action)
             expect(callReducer).toEqual(expected)
         })
