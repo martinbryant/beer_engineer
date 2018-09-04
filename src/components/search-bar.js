@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import SearchIcon from '@material-ui/icons/Search'
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 
-import { fetchBeerByName } from '../actions/beer-actions';
+import { fetchBeerByName, fetchBeerRandom } from '../actions/beer-actions';
 
 const styles = {
     textfield: {
@@ -13,7 +16,7 @@ const styles = {
     }
 };
 
-const SearchBar = ({ classes, loadingError, submitSearch }) => (
+const SearchBar = ({ classes, loadingError, submitSearch, getRandomBeers }) => (
     <Grid container justify="center">
         <form
             onSubmit={(e) => {
@@ -29,6 +32,19 @@ const SearchBar = ({ classes, loadingError, submitSearch }) => (
                 margin="normal"
                 helperText={loadingError}
             />
+            <IconButton
+                type="submit"
+                aria-label="Search">
+                <SearchIcon />
+            </IconButton>
+            <Button
+                onClick={getRandomBeers}
+                variant="contained"
+                size="small"
+                color="primary">
+                Random
+        </Button>
+
         </form>
     </Grid>
 )
@@ -44,6 +60,9 @@ SearchBar.propTypes = {
 const mapDispatchToProps = dispatch => ({
     submitSearch(searchTerm) {
         dispatch(fetchBeerByName(searchTerm))
+    },
+    getRandomBeers() {
+        dispatch(fetchBeerRandom(5))
     }
 })
 
