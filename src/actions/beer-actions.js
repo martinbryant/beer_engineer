@@ -16,8 +16,9 @@ export const fetchBeerByName = query => ({
     }
 })
 
-export const fetchBeerRandom = () => ({
+export const fetchBeerRandom = numberOfBeers => ({
     type: FETCH_BEER_RANDOM,
+    payload: numberOfBeers,
     meta: {
         feature: BEER_RANDOM
     }

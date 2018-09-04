@@ -16,11 +16,12 @@ describe('Beer actions', () => {
     it('fetchBeerRandom', () => {
         const expected = {
             type: 'FETCH_BEER_RANDOM',
+            payload: 5,
             meta: {
                 feature: 'BEER_RANDOM'
             }
         }
-        const action = actions.fetchBeerRandom()
+        const action = actions.fetchBeerRandom(5)
         expect(action).toEqual(expected)
     })
     it('setBeers', () => {
