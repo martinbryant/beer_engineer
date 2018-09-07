@@ -40,4 +40,13 @@ describe('ui actions', () => {
         const action = actions.removeNotification(id, feature)
         expect(action).toEqual(expected)
     })
+    it('updateNoOfRandomBeers', () => {
+        const expected = {
+            type: 'UPDATE_NO_OF_RANDOM_BEERS',
+            payload: 1
+        }
+        const noOfBeers = 1
+        const action = actions.updateNoOfRandomBeers(noOfBeers)
+        expect(action).toEqual(expected)
+    })
 })

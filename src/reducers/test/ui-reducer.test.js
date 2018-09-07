@@ -1,5 +1,5 @@
 import * as reducer from '../ui-reducer'
-import { setLoader, setNotification, removeNotification } from '../../actions/ui-actions';
+import { setLoader, setNotification, removeNotification, updateNoOfRandomBeers } from '../../actions/ui-actions';
 
 describe('ui reducer', () => {
     describe('isLoading', () => {
@@ -50,6 +50,23 @@ describe('ui reducer', () => {
             const oldState = { id: 123, message: 'new message' }
             const expected = {}
             const callReducer = reducer.notifications(oldState, action)
+            expect(callReducer).toEqual(expected)
+        })
+    })
+    describe('noOfRandomBeers', () => {
+        it('returns the initial state', () => {
+            const action = {
+                type: 'init'
+            }
+            const expected = 5
+            const callReducer = reducer.noOfRandomBeers(undefined, action)
+            expect(callReducer).toEqual(expected)
+        })
+        it('should handle update no of beers', () => {
+            const action = updateNoOfRandomBeers(10, 'feature')
+            const oldState = 5
+            const expected = 10
+            const callReducer = reducer.noOfRandomBeers(oldState, action)
             expect(callReducer).toEqual(expected)
         })
     })
