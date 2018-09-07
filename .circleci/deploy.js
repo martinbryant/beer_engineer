@@ -7,10 +7,12 @@ var config = {
     host: process.env.FTPHOST,
     port: 21,
     localRoot: __dirname + "/../build/",
-    remoteRoot: "/public_html/beer-engineer",
+    remoteRoot: "/public_html/beer-engineer/",
     include: ['*']
 }
 
 ftpDeploy.deploy(config)
     .then(res => console.log('finished'))
-    .catch(err => console.log(err))
+    .catch(err => {
+        throw err
+    })
