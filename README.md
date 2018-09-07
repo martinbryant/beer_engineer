@@ -1,5 +1,7 @@
 # Beer Engineer
 
+[![CircleCI](https://circleci.com/gh/martinbryant/beer_engineer.svg?style=svg)](https://circleci.com/gh/martinbryant/beer_engineer)
+
 Inspired by [5 Projects To Complete When Starting to Learn Front-End Web Development](https://medium.com/@GarrettLevine/5-projects-to-complete-when-starting-to-learn-front-end-web-development-48e8a1ce3178 "medium.com")
 
 I would recommend creating a similar app to giphy in layout, but one which allows you to have a ‘shopping cart’ or ‘favourite’ functionality. You should then be able to see a separate list of the items you favourited. This will of course not be saved to any database, but will bring a new set of challenges with managing application state.
