@@ -6,7 +6,7 @@ var config = {
     password: process.env.FTPPASS,
     host: process.env.FTPHOST,
     port: 21,
-    localRoot: __dirname + "/../build/",
+    localRoot: __dirname + "/build",
     remoteRoot: "/public_html/beer-engineer/",
     include: ['*']
 }
