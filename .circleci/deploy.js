@@ -1,18 +1,68 @@
-var FtpDeploy = require('ftp-deploy');
-var ftpDeploy = new FtpDeploy();
+const fs = require('fs');
+const Ftp = require('ftp');
+const glob = require('glob');
 
-var config = {
-    user: process.env.FTPUSER,
-    password: process.env.FTPPASS,
-    host: process.env.FTPHOST,
-    port: 21,
-    localRoot: __dirname + "/build",
-    remoteRoot: "/public_html/beer-engineer/",
-    include: ['*']
+const basePath = './build';
+const destinationPath = '/public_html/beer-engineer';
+const config = {
+    // We store the credentials for
+    // our FTP server as environemnt
+    // variables for security reasons.
+    host: process.env.FTP_HOST,
+    password: process.env.FTP_PASSWORD,
+    user: process.env.FTP_USER,
+    port: '21'
+};
+
+const ftp = new Ftp();
+
+function createDirectory(destination) {
+    console.log(`Creating ${destination} on the server`)
+    return ftp.mkdir(destination, true, (error) => {
+        if (error) throw error;
+
+        ftp.end();
+    });
 }
 
-ftpDeploy.deploy(config)
-    .then(res => console.log('finished'))
-    .catch(err => {
-        throw err
-    })
+function uploadFile(file, destination) {
+    console.log(`Uploading ${file} to ${destination}`)
+    ftp.put(file, destination, (error) => {
+        if (error) throw error;
+
+        console.log(`${file} => ${destination}`);
+        ftp.end();
+    });
+}
+
+// Check if the path is a directory and
+// either create the directory on the server
+// if it is a directory, or upload the file
+// if it is a file.
+function handlePath(path) {
+    const relativeFile = path.replace(`${basePath}/`, '');
+    const destination = `${destinationPath}/${relativeFile}`;
+
+    if (fs.lstatSync(path).isDirectory()) {
+        return createDirectory(destination);
+    }
+
+    return uploadFile(path, destination);
+}
+
+ftp.on('ready', () => {
+    console.log('ready')
+    // Get an array of all files and directories
+    // in the given base path and send them to the
+    // `handlePath()` function to decide if a
+    // directory is created on the server or the
+    // file is uploaded.
+    glob.sync(`${basePath}/**/*`).forEach(handlePath);
+});
+
+ftp.connect(config);
+
+//use ftp-promise as dev-dep
+//replace env variables for user, password, host
+//run on circleci as node circleci/deploy
+
