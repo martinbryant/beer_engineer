@@ -90,25 +90,25 @@ function cleanup(pathObject, directory) {
     }
 
     if (isExpired(pathObject.date)) {
-        ftpClient.delete(path, (error) => {
+        ftp.delete(path, (error) => {
             if (error) throw error;
 
             console.log(`Removed: ${path}`);
-            ftpClient.end();
+            ftp.end();
         });
     }
 }
 
 function cleanupRemoteDirectory(directory) {
-    return ftpClient.list(directory, (error, pathObjects) => {
+    return ftp.list(directory, (error, pathObjects) => {
         if (error) throw error;
 
         pathObjects.forEach(pathObject => cleanup(pathObject, directory));
-        ftpClient.end();
+        ftp.end();
     });
 }
 
-ftpClient.on('ready', () => {
+ftp.on('ready', () => {
     // ...
 
     // Cleanup files older than the given amount of
@@ -118,4 +118,4 @@ ftpClient.on('ready', () => {
     cleanupRemoteDirectory(destinationPath);
 });
 
-ftpClient.connect(config);
+ftp.connect(config);
