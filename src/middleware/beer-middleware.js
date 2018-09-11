@@ -15,7 +15,7 @@ export const beerMiddleware = ({ getState }) => next => action => {
             url = `${byNameUrl}${payload.replace(" ", "_")}`
         }
         if (type.includes(BEER_RANDOM)) {
-            url = randomUrl
+            url = new Array(payload).fill(randomUrl)
         }
         next(apiRequest({}, 'GET', url, feature))
         next(setLoader(true, feature))

@@ -73,13 +73,14 @@ describe('beerMiddleware', () => {
         expect(next).toHaveBeenCalledWith(setLoaderAction)
     })
     it('fetch beers random action calls api request', () => {
-        const action = fetchBeerRandom()
+        const action = fetchBeerRandom(2)
         const apiRequestAction = {
             type: 'BEER_RANDOM_API_REQUEST',
             payload: {},
             meta: {
                 method: 'GET',
-                url: 'https://api.punkapi.com/v2/beers/random',
+                url: ['https://api.punkapi.com/v2/beers/random',
+                    'https://api.punkapi.com/v2/beers/random'],
                 feature: BEER_RANDOM
             }
         }
