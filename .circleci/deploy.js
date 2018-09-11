@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Ftp = require('ftp');
 const glob = require('glob');
+require('dotenv').config();
 
 const basePath = './build';
 const destinationPath = 'beer-engineer';
@@ -58,6 +59,7 @@ ftp.on('ready', () => {
     // directory is created on the server or the
     // file is uploaded.
     glob.sync(`${basePath}/**/*`).forEach(handlePath);
+    cleanupRemoteDirectory(destinationPath);
 });
 
 ftp.connect(config);
@@ -107,15 +109,3 @@ function cleanupRemoteDirectory(directory) {
         ftp.end();
     });
 }
-
-ftp.on('ready', () => {
-    // ...
-
-    // Cleanup files older than the given amount of
-    // days. Keep in mind that this only makes sense
-    // if you've deployed at least once since the
-    // given amount of days.
-    cleanupRemoteDirectory(destinationPath);
-});
-
-ftp.connect(config);
