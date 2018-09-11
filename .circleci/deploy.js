@@ -66,3 +66,56 @@ ftp.connect(config);
 //replace env variables for user, password, host
 //run on circleci as node circleci/deploy
 
+const EXPIRATION_DATE_IN_DAYS = 1;
+
+// ...
+
+function isExpired(date) {
+    const oneDayInMilliseconds = 86400000;
+    const timestamp = new Date(date).getTime();
+    const expirationTimestamp = Date.now() - (oneDayInMilliseconds * EXPIRATION_DATE_IN_DAYS);
+
+    return timestamp < expirationTimestamp;
+}
+
+function cleanup(pathObject, directory) {
+    if (pathObject.name === '.' || pathObject.name === '..') return;
+
+    const path = `${directory}/${pathObject.name}`;
+
+    // If the current path is a directory
+    // we recursively check the files in it.
+    if (pathObject.type === 'd') {
+        return cleanupRemoteDirectory(path);
+    }
+
+    if (isExpired(pathObject.date)) {
+        ftpClient.delete(path, (error) => {
+            if (error) throw error;
+
+            console.log(`Removed: ${path}`);
+            ftpClient.end();
+        });
+    }
+}
+
+function cleanupRemoteDirectory(directory) {
+    return ftpClient.list(directory, (error, pathObjects) => {
+        if (error) throw error;
+
+        pathObjects.forEach(pathObject => cleanup(pathObject, directory));
+        ftpClient.end();
+    });
+}
+
+ftpClient.on('ready', () => {
+    // ...
+
+    // Cleanup files older than the given amount of
+    // days. Keep in mind that this only makes sense
+    // if you've deployed at least once since the
+    // given amount of days.
+    cleanupRemoteDirectory(destinationPath);
+});
+
+ftpClient.connect(config);
