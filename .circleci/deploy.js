@@ -3,7 +3,7 @@ const Ftp = require('ftp');
 const glob = require('glob');
 
 const basePath = './build';
-const destinationPath = '/public_html/beer-engineer';
+const destinationPath = 'beer-engineer';
 const config = {
     // We store the credentials for
     // our FTP server as environemnt
