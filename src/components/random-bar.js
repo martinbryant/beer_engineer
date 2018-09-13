@@ -40,9 +40,9 @@ const RandomBar = ({ classes, noOfRandomBeers, getRandomBeers, updateNoOfRandomB
         </Button>
         <RadioGroup
             value={noOfRandomBeers}
-            onChange={(e, value) => updateNoOfRandomBeers(parseInt(value))}>
-            <FormControlLabel value={5} control={<Radio />} label={5} />
-            <FormControlLabel value={10} control={<Radio />} label={10} />
+            onChange={(e, value) => updateNoOfRandomBeers(Number(value))}>
+            <FormControlLabel value="5" control={<Radio />} label={5} />
+            <FormControlLabel value="10" control={<Radio />} label={10} />
         </RadioGroup>
 
     </Grid>
@@ -55,7 +55,7 @@ RandomBar.propTypes = {
 const mapStateToProps = (state) => {
     const { noOfRandomBeers } = state.ui
     return {
-        noOfRandomBeers
+        noOfRandomBeers: noOfRandomBeers.toString()
     }
 }
 
