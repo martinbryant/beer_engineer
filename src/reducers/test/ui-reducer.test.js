@@ -58,14 +58,14 @@ describe('ui reducer', () => {
             const action = {
                 type: 'init'
             }
-            const expected = 5
+            const expected = '5'
             const callReducer = reducer.noOfRandomBeers(undefined, action)
             expect(callReducer).toEqual(expected)
         })
         it('should handle update no of beers', () => {
-            const action = updateNoOfRandomBeers(10, 'feature')
-            const oldState = 5
-            const expected = 10
+            const action = updateNoOfRandomBeers('10', 'feature')
+            const oldState = '5'
+            const expected = '10'
             const callReducer = reducer.noOfRandomBeers(oldState, action)
             expect(callReducer).toEqual(expected)
         })

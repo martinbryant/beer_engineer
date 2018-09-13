@@ -18,7 +18,7 @@ export const notifications = (state = {}, action) => {
     }
 }
 
-export const noOfRandomBeers = (state = 5, action) => {
+export const noOfRandomBeers = (state = '5', action) => {
     switch (true) {
         case action.type.includes(UPDATE_NO_OF_RANDOM_BEERS):
             return action.payload

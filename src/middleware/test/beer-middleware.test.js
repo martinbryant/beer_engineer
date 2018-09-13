@@ -73,7 +73,7 @@ describe('beerMiddleware', () => {
         expect(next).toHaveBeenCalledWith(setLoaderAction)
     })
     it('fetch beers random action calls api request', () => {
-        const action = fetchBeerRandom(2)
+        const action = fetchBeerRandom('2')
         const apiRequestAction = {
             type: 'BEER_RANDOM_API_REQUEST',
             payload: {},
@@ -88,7 +88,7 @@ describe('beerMiddleware', () => {
         expect(next).toHaveBeenCalledWith(apiRequestAction)
     })
     it('fetch beers random action calls set loader', () => {
-        const action = fetchBeerRandom()
+        const action = fetchBeerRandom('5')
         const setLoaderAction = {
             type: 'BEER_RANDOM_SET_LOADER',
             payload: true,
