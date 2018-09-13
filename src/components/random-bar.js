@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button'
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormGroup from '@material-ui/core/FormGroup'
 
 import { fetchBeerRandom } from '../actions/beer-actions';
 import { updateNoOfRandomBeers } from '../actions/ui-actions'
@@ -25,26 +22,30 @@ const styles = {
         marginRight: 20,
         minWidth: 90,
         maxHeight: 20
+    },
+    fgroup: {
+        flexDirection: 'row'
     }
 }
 
 const RandomBar = ({ classes, noOfRandomBeers, getRandomBeers, updateNoOfRandomBeers }) => (
     <Grid container justify="center">
-        <Button
-            className={classes.button}
-            onClick={e => getRandomBeers(noOfRandomBeers)}
-            variant="contained"
-            size="small"
-            color="primary">
-            {noOfRandomBeers} Random
+        <FormGroup className={classes.fgroup}>
+            <Button
+                className={classes.button}
+                onClick={e => getRandomBeers(noOfRandomBeers)}
+                variant="contained"
+                size="small"
+                color="primary">
+                {noOfRandomBeers} Random
         </Button>
-        <RadioGroup
-            value={noOfRandomBeers}
-            onChange={(e, value) => updateNoOfRandomBeers(Number(value))}>
-            <FormControlLabel value="5" control={<Radio />} label={5} />
-            <FormControlLabel value="10" control={<Radio />} label={10} />
-        </RadioGroup>
-
+            <RadioGroup
+                value={noOfRandomBeers}
+                onChange={(e, value) => updateNoOfRandomBeers(value)}>
+                <FormControlLabel value="5" control={<Radio />} label={5} />
+                <FormControlLabel value="10" control={<Radio />} label={10} />
+            </RadioGroup>
+        </FormGroup>
     </Grid>
 )
 
@@ -55,7 +56,7 @@ RandomBar.propTypes = {
 const mapStateToProps = (state) => {
     const { noOfRandomBeers } = state.ui
     return {
-        noOfRandomBeers: noOfRandomBeers.toString()
+        noOfRandomBeers
     }
 }
 
