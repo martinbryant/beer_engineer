@@ -17,6 +17,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
   test:
+    steps:
       - run: npm test
     
   build-deploy:
