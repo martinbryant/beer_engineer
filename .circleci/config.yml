@@ -57,10 +57,10 @@ workflows:
       - deploy:
           requires:
             - setup
-          filters:
-            branches:
-              only: 
-                - master
+    filters:
+      branches:
+        only: 
+          - master
   
   
 
