@@ -20,14 +20,16 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - persist_to_workspace:
-          root: /root/app
+          root: ~/project
+          paths:
+            - .
 
   test:
     setup:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /root/app
+          at: /tmp/dir
       - run: npm test
     
   build-deploy:
@@ -35,7 +37,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /root/app
+          at: /tmp/dir
       - run: npm run build
       - run: npm run deploy
 
