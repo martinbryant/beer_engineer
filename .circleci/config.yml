@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   docker:
       - image: circleci/node:9.8
-  working_directory: ~/src
+  working_directory: ~/tmp
 
 jobs:
   setup:
@@ -20,8 +20,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - persist_to_workspace:
-          root: ~/src
+          root: ~/tmp
           paths:
+            - src
             - node_modules
             - package.json
 
@@ -30,7 +31,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/src
+          at: ~/tmp
       - run: npm test
     
   build-deploy:
@@ -38,7 +39,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/src
+          at: ~/tmp
       - run: npm run build
       - run: npm run deploy
 
