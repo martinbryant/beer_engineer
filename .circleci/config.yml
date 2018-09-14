@@ -21,8 +21,8 @@ jobs:
     
   build-deploy:
     steps:
-    - run: npm run build
-    - run: npm run deploy
+      - run: npm run build
+      - run: npm run deploy
 
 workflows:
   version: 2
@@ -38,7 +38,7 @@ workflows:
       - setup
       - build-deploy:
         requires:
-          -setup
+          - setup
     filters:
       branches:
         only:
