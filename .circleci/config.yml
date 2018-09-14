@@ -51,7 +51,18 @@ workflows:
       - test:
           requires:
             - setup
-  
+  setup-and-build:
+    jobs:
+      - setup
+        filters:
+          branches:
+            only: master
+      - deploy:
+          requires:
+            - setup
+          filters:
+            branches:
+              only: master
   
   
 
