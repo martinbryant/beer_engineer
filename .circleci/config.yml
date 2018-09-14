@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  setup:
+  test:
     docker:
       - image: circleci/node:9.8
     working_directory: ~/src
@@ -15,30 +15,33 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-  test:
-    steps:
-      - setup
       - run: npm test
     
   build-deploy:
+    docker:
+      - image: circleci/node:9.8
+    working_directory: ~/src
     steps:
-      - setup
-      - run: npm run build
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - - run: npm run build
       - run: npm run deploy
 
 workflows:
   version: 2
   setup-and-test:
     jobs: 
-      - setup
-      - test:
-          requires:
-            - setup
+      - test
   
   setup-and-build-deploy:
     jobs:
-      - setup
-      - build-deploy:
-          requires:
-            - setup
+      - build-deploy
 
