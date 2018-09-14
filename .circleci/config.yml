@@ -34,7 +34,7 @@ jobs:
           at: ~/tmp
       - run: npm test
     
-  build-deploy:
+  deploy:
     setup:
     <<: *defaults
     steps:
@@ -51,6 +51,15 @@ workflows:
       - test:
           requires:
             - setup
+  setup-and-build:
+    jobs:
+      - setup
+      - deploy:
+          requires:
+            - setup
+    filters:
+      branches:
+        only: master
   
   
 
