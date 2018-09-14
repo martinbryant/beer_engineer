@@ -1,9 +1,13 @@
 version: 2
-jobs:
-  setup:
-    docker:
+
+defaults: &defaults
+  docker:
       - image: circleci/node:9.8
     working_directory: ~/src
+
+jobs:
+  setup:
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -15,27 +19,23 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: /root/app
 
   test:
-    docker:
-      - image: circleci/node:9.8
-    working_directory: ~/src
+    setup:
+    <<: *defaults
     steps:
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+      - attach_workspace:
+          at: /root/app
       - run: npm test
     
   build-deploy:
-    docker:
-      - image: circleci/node:9.8
-    working_directory: ~/src
+    setup:
+    <<: *defaults
     steps:
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+      - attach_workspace:
+          at: /root/app
       - run: npm run build
       - run: npm run deploy
 
