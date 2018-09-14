@@ -59,7 +59,8 @@ workflows:
             - setup
     filters:
       branches:
-        only: master
+        only: 
+          - master
   
   
 
