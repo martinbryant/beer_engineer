@@ -45,22 +45,17 @@ jobs:
 
 workflows:
   version: 2
-  setup-and-test:
+  setup-test-deploy:
     jobs: 
       - setup
       - test:
           requires:
             - setup
-  setup-and-build:
-    jobs:
-      - setup
       - deploy:
           requires:
             - setup
-    filters:
-      branches:
-        only: 
-          - master
-  
-  
+          filters:
+            branches:
+              only: 
+                - master
 
