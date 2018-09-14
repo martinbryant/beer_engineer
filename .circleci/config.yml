@@ -44,7 +44,9 @@ workflows:
   setup-and-test:
     jobs: 
       - setup
-      - test
+      - test:
+          requires:
+            - setup
   
   
 
