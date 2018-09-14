@@ -23,6 +23,7 @@ jobs:
           root: ~/src
           paths:
             - node_modules
+            - package.json
 
   test:
     setup:
