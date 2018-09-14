@@ -27,16 +27,14 @@ jobs:
 workflows:
   version: 2
   setup-and-test:
-    jobs:
-      - test:
-        requires:
-          - setup
+    jobs: 
+      - setup
+      - test
   
   setup-and-build-deploy:
     jobs:
-      - build-deploy:
-        requires:
-          - setup
+      - setup
+      - build-deploy
     filters:
       branches:
         only:
