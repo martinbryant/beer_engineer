@@ -26,6 +26,8 @@ jobs:
             - node_modules
             - package.json
             - .circleci
+            - build
+            - public
 
   test:
     setup:
