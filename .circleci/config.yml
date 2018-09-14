@@ -25,6 +25,7 @@ jobs:
             - src
             - node_modules
             - package.json
+            - .circleci
 
   test:
     setup:
