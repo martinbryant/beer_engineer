@@ -27,15 +27,13 @@ jobs:
 workflows:
   version: 2
   setup-and-test:
-    jobs: 
-      - setup
+    jobs:
       - test:
         requires:
           - setup
   
   setup-and-build-deploy:
     jobs:
-      - setup
       - build-deploy:
         requires:
           - setup
