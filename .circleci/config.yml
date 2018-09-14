@@ -54,10 +54,6 @@ workflows:
   setup-and-build:
     jobs:
       - setup
-        filters:
-          branches:
-            only: 
-              - master
       - deploy:
           requires:
             - setup
