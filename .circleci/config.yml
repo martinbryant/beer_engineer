@@ -20,9 +20,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - persist_to_workspace:
-          root: ~/project
+          root: ~/src
           paths:
-            - .
+            - node_modules
 
   test:
     setup:
