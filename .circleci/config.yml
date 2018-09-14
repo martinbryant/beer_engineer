@@ -29,14 +29,16 @@ workflows:
   setup-and-test:
     jobs: 
       - setup
-      - test
+      - test:
+          requires:
+            - setup
   
   setup-and-build-deploy:
     jobs:
       - setup
       - build-deploy
-    filters:
-      branches:
-        only:
-          - master
+      filters:
+        branches:
+          only:
+            - master
 
