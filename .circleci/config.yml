@@ -56,13 +56,15 @@ workflows:
       - setup
         filters:
           branches:
-            only: master
+            only: 
+              - master
       - deploy:
           requires:
             - setup
           filters:
             branches:
-              only: master
+              only: 
+                - master
   
   
 
