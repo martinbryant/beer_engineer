@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     const { classes } = this.props
     return (
-      <Router basename='/beer-engineer'>
+      <Router basename={process.env.PUBLIC_URL}>
         <div className={classes.root}>
           <Route path={`${process.env.PUBLIC_URL}/`} render={({ location }) => (
             <Fragment>
