@@ -33,6 +33,7 @@ class App extends Component {
                 <Redirect exact from='/' to='/search' />
                 <Route path='/search' component={SearchPage} />
                 <Route path='/favourites' component={FavouritePage} />
+                <Route component={NoMatch} />
               </Switch>
               <NotificationBar />
             </Fragment>
@@ -42,6 +43,12 @@ class App extends Component {
     );
   }
 }
+
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>No beer for you at <code>{location.pathname}</code></h3>
+  </div>
+)
 
 App.propTypes = {
   classes: PropTypes.object.isRequired
