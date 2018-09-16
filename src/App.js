@@ -26,13 +26,13 @@ class App extends Component {
     return (
       <Router basename='/beer-engineer'>
         <div className={classes.root}>
-          <Route path='/' render={({ location }) => (
+          <Route path={`${process.env.PUBLIC_URL}/`} render={({ location }) => (
             <Fragment>
               <NavBar location={location} />
               <Switch>
-                <Redirect exact from='/' to='/search' />
-                <Route path='/search' component={SearchPage} />
-                <Route path='/favourites' component={FavouritePage} />
+                <Redirect exact from={`${process.env.PUBLIC_URL}/`} to={`${process.env.PUBLIC_URL}/search`} />
+                <Route path={`${process.env.PUBLIC_URL}/search`} component={SearchPage} />
+                <Route path={`${process.env.PUBLIC_URL}/favourites`} component={FavouritePage} />
               </Switch>
               <NotificationBar />
             </Fragment>
