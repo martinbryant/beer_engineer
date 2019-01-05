@@ -19,7 +19,7 @@ export const beerMiddleware = ({ getState }) => next => action => {
             .fill(0)
             .map(n => n + Math.floor(Math.random() * 234 + 1))
             .reduce((acc, number) => {
-                acc = acc + `${number}` + "|";
+                acc = `${acc}${number}${"|"}`;
                 return acc;
             }, "");
     const { feature } = action.meta || "";
