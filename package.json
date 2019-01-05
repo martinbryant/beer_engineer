@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "node .circleci/deploy.js"
   },
@@ -29,7 +29,7 @@
     "fs": "0.0.1-security",
     "ftp": "^0.3.10",
     "glob": "^7.1.3",
-    "jest-localstorage-mock": "^2.2.0",
+    "jest-localstorage-mock": "^2.4.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-immutable-state-invariant": "^2.1.0"
   },
