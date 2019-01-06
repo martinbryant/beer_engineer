@@ -36,7 +36,25 @@ jobs:
       - attach_workspace:
           at: ~/tmp
       - run: npm test
-    
+
+  e2etest:
+    setup:
+      docker:
+        - image: cypress/base:10
+      working_directory: ~/tmp
+    steps:
+      - attach_workspace:
+          at: ~/tmp
+      - run: 
+          command: npm start
+          background: true
+      - run: cypress run
+      - store_artifacts:
+        path: cypress/videos
+     - store_artifacts:
+        path: cypress/screenshots
+
+
   deploy:
     setup:
     <<: *defaults
@@ -54,10 +72,12 @@ workflows:
       - test:
           requires:
             - setup
+      - e2etest
       - deploy:
           requires:
             - setup
             - test
+            - e2etest
           filters:
             branches:
               only: 
