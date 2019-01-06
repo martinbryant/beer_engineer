@@ -67,7 +67,9 @@ workflows:
             - test:
                   requires:
                       - setup
-            - e2etest
+            - e2etest:
+                  requires:
+                      - setup
             - deploy:
                   requires:
                       - setup
