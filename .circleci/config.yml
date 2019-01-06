@@ -1,85 +1,83 @@
 version: 2
 
 defaults: &defaults
-  docker:
-      - image: circleci/node:9.8
-  working_directory: ~/tmp
+    docker:
+        - image: circleci/node:9.8
+    working_directory: ~/tmp
 
 jobs:
-  setup:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run: npm install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - persist_to_workspace:
-          root: ~/tmp
-          paths:
-            - src
-            - node_modules
-            - package.json
-            - .circleci
-            - build
-            - public
-
-  test:
     setup:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/tmp
-      - run: npm test
+        <<: *defaults
+        steps:
+            - checkout
+            - restore_cache:
+                  keys:
+                      - v1-dependencies-{{ checksum "package.json" }}
+                      - v1-dependencies-
+            - run: npm install
+            - save_cache:
+                  paths:
+                      - node_modules
+                  key: v1-dependencies-{{ checksum "package.json" }}
+            - persist_to_workspace:
+                  root: ~/tmp
+                  paths:
+                      - src
+                      - node_modules
+                      - package.json
+                      - .circleci
+                      - build
+                      - public
 
-  e2etest:
-    setup:
-      docker:
-        - image: cypress/base:10
-      working_directory: ~/tmp
-    steps:
-      - attach_workspace:
-          at: ~/tmp
-      - run: 
-          command: npm start
-          background: true
-      - run: cypress run
-      - store_artifacts:
-        path: cypress/videos
-     - store_artifacts:
-        path: cypress/screenshots
+    test:
+        setup:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/tmp
+            - run: npm test
 
+    e2etest:
+        setup:
+            docker:
+                - image: cypress/base:10
+            working_directory: ~/tmp
+        steps:
+            - attach_workspace:
+                  at: ~/tmp
+            - run:
+                  command: npm start
+                  background: true
+            - run: cypress run
+            - store_artifacts:
+              path: cypress/videos
+            - store_artifacts:
+              path: cypress/screenshots
 
-  deploy:
-    setup:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/tmp
-      - run: npm run build
-      - run: npm run deploy
+    deploy:
+        setup:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/tmp
+            - run: npm run build
+            - run: npm run deploy
 
 workflows:
-  version: 2
-  setup-test-deploy:
-    jobs: 
-      - setup
-      - test:
-          requires:
+    version: 2
+    setup-test-deploy:
+        jobs:
             - setup
-      - e2etest
-      - deploy:
-          requires:
-            - setup
-            - test
+            - test:
+                  requires:
+                      - setup
             - e2etest
-          filters:
-            branches:
-              only: 
-                - master
-
+            - deploy:
+                  requires:
+                      - setup
+                      - test
+                      - e2etest
+                  filters:
+                      branches:
+                          only:
+                              - master
