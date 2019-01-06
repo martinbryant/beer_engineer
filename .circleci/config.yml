@@ -38,9 +38,9 @@ jobs:
             - run: npm test
 
     e2etest:
+        docker:
+            - image: cypress/base:10
         setup:
-            docker:
-                - image: cypress/base:10
             working_directory: ~/tmp
         steps:
             - attach_workspace:
