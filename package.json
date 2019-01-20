@@ -23,7 +23,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "deploy": "node .circleci/deploy.js",
-        "cy:open": "npx cypress open",
+        "cy:open": "npm start & wait-on http://localhost:3000 & npx cypress open",
         "cy:run": "npx cypress run"
     },
     "devDependencies": {
