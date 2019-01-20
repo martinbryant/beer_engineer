@@ -23,8 +23,8 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "deploy": "node .circleci/deploy.js",
-        "cypress:open": "npx cypress open",
-        "cypress:run": "npx cypress run"
+        "cy:open": "npx cypress open",
+        "cy:run": "npx cypress run"
     },
     "devDependencies": {
         "cypress": "^3.1.4",
