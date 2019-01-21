@@ -30,7 +30,7 @@ const SearchBar = ({
             onSubmit={e => {
                 e.preventDefault();
                 let searchTerm = e.target["search"].value;
-                !searchValidationError && submitSearch(searchTerm);
+                submitSearch(searchTerm);
             }}
             autoComplete="off"
         >
@@ -49,8 +49,14 @@ const SearchBar = ({
             />
             <IconButton
                 type="submit"
+                name="search-button"
                 aria-label="Search"
-                disabled={searchValidationError ? true : false}
+                disabled={
+                    (searchValidationError === null && true) ||
+                    searchValidationError
+                        ? true
+                        : false
+                }
             >
                 <SearchIcon />
             </IconButton>
