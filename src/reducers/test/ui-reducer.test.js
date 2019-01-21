@@ -83,7 +83,7 @@ describe("ui reducer", () => {
             const action = {
                 type: "init"
             };
-            const expected = "";
+            const expected = null;
             const callReducer = reducer.searchValidationError(
                 undefined,
                 action

@@ -30,7 +30,7 @@ export const noOfRandomBeers = (state = "5", action) => {
     }
 };
 
-export const searchValidationError = (state = "", action) =>
+export const searchValidationError = (state = null, action) =>
     action.type === SET_SEARCH_VALIDATION_ERROR ? action.payload : state;
 
 const ui = combineReducers({

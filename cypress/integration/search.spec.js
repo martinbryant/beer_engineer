@@ -29,9 +29,17 @@ describe("Search Page tests", () => {
         });
     });
     describe("search button", () => {
-        it("disabled on load as search form is empty");
-        it("disabled if search validation error");
-        it("active if search term valid");
+        it("disabled on load as search form is empty", () => {
+            cy.get("button[name=search-button]").should("be.disabled");
+        });
+        it("disabled if search validation error", () => {
+            cy.get("#search").type("#");
+            cy.get("button[name=search-button]").should("be.disabled");
+        });
+        it("active if search term valid", () => {
+            cy.get("#search").type("beer");
+            cy.get("button[name=search-button]").should("not.be.disabled");
+        });
     });
     describe("random button", () => {
         it("show 5 random button by default", () => {
