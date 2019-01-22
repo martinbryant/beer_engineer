@@ -1,21 +1,21 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
-import SearchBar from './search-bar'
-import RandomBar from './random-bar'
-import SearchResult from './search-result'
-import Loading from './loading'
+import SearchBar from "./search-bar";
+import RandomBar from "./random-bar";
+import SearchResult from "./search-result";
+import Loading from "./loading";
 
 const SearchPage = ({ isLoading }) => (
-    <Fragment>
+    <section className="page-wrapper">
         <SearchBar />
         <RandomBar />
         {isLoading ? <Loading /> : <SearchResult />}
-    </Fragment>
-)
+    </section>
+);
 
 const mapStateToProps = ({ ui: { isLoading } }) => ({
     isLoading
-})
+});
 
-export default connect(mapStateToProps)(SearchPage)
+export default connect(mapStateToProps)(SearchPage);

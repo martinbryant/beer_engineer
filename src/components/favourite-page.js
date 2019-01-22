@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React from "react";
 
-import FavouriteResult from './favourite-result';
+import FavouriteResult from "./favourite-result";
 
 const FavouritePage = () => (
-    <Fragment>
+    <section className="page-wrapper">
         <FavouriteResult />
-    </Fragment>
-)
+    </section>
+);
 
 export default FavouritePage;
