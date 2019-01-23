@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import {
     BrowserRouter as Router,
@@ -27,22 +28,35 @@ class App extends Component {
             <Router basename="/beer-engineer">
                 <div className={classes.root}>
                     <Route
-                        path="/"
                         render={({ location }) => (
                             <Fragment>
                                 <NavBar location={location} />
-                                <Switch>
-                                    <Redirect exact from="/" to="/search" />
-                                    <Route
-                                        path="/search"
-                                        component={SearchPage}
-                                    />
-                                    <Route
-                                        path="/favourites"
-                                        component={FavouritePage}
-                                    />
-                                    <Route component={NoMatch} />
-                                </Switch>
+                                <TransitionGroup className="transition-group">
+                                    <CSSTransition
+                                        key={location.key}
+                                        timeout={{ enter: 500, exit: 100 }}
+                                        classNames="fade"
+                                    >
+                                        <section className="page">
+                                            <Switch location={location}>
+                                                <Redirect
+                                                    exact
+                                                    from="/"
+                                                    to="/search"
+                                                />
+                                                <Route
+                                                    path="/search"
+                                                    component={SearchPage}
+                                                />
+                                                <Route
+                                                    path="/favourites"
+                                                    component={FavouritePage}
+                                                />
+                                                <Route component={NoMatch} />
+                                            </Switch>
+                                        </section>
+                                    </CSSTransition>
+                                </TransitionGroup>
                                 <NotificationBar />
                             </Fragment>
                         )}
