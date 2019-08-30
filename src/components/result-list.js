@@ -13,10 +13,9 @@ const styles = {
         paddingRight: '50px',
         display: 'grid',
         gridRowGap: '15px',
+        gridColumnGap: '25px',
         justifyItems: 'center',
-        alignItems: 'stretch',
-        alignContent: 'stretch',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))'
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'
     }
 };
 
