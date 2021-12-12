@@ -48,7 +48,7 @@ jobs:
                   at: ~/tmp
             - run: npm run build
             - add_ssh_keys:
-            - run: scp -oStrictHostKeyChecking=no -r ~/tmp/build/* ${REMOTE_USER}@${DEPLOY_HOST}:${REMOTE_FOLDER}
+            - run: scp -oStrictHostKeyChecking=no -r ~/tmp/build/* ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_FOLDER}
 
 workflows:
     version: 2
