@@ -28,7 +28,7 @@
         "cy:run": "npx cypress run"
     },
     "devDependencies": {
-        "cypress": "^9.1.1",
+        "cypress": "^3.1.4",
         "fetch-mock": "^6.5.2",
         "fs": "0.0.1-security",
         "ftp": "^0.3.10",
