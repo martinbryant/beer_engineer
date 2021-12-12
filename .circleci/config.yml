@@ -47,7 +47,8 @@ jobs:
             - attach_workspace:
                   at: ~/tmp
             - run: npm run build
-            - run: npm run deploy
+            - commands: 
+                - scp -r ~/tmp/build/* mb@68.183.36.250:/home/mb/portfolio/public_html/beer-engineer
 
 workflows:
     version: 2
