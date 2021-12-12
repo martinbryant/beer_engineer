@@ -48,7 +48,7 @@ jobs:
                   at: ~/tmp
             - run: npm run build
             - add_ssh_keys:
-            - run: scp -oStrictHostKeyChecking=no -r ~/tmp/build/* mb@68.183.36.250:/home/mb/portfolio/public_html/beer-engineer
+            - run: scp -oStrictHostKeyChecking=no -r ~/tmp/build/* ${REMOTE_USER}@${DEPLOY_HOST}:${REMOTE_FOLDER}
 
 workflows:
     version: 2
